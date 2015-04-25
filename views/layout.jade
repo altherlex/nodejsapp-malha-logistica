@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title= title
+
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+
+    script(src='/javascripts/jquery.js')
+    script(src='/javascripts/jquery_ujs.js')
+  body
+    div.container
+      //<%= render "layouts/header" %>
+      include ./header.html
+      block content

@@ -1,0 +1,73 @@
+extends layout
+
+block content
+  a(href='#', onclick="go()") +Add massive paths
+
+  script.
+    function go(){
+      if ($('#new_path').is(":visible"))
+        $('#new_path').hide();  
+      else
+        $('#new_path').show();
+    }
+
+    /*
+    paths#destroy
+    GET    /figure/:map_id/:begin_point/:end_point/:autonomy/:pice(.:format) paths#figure
+    */
+    $("form:last").submit(function( event ) {
+      $.ajax({
+        url: "/figure?"+$('form:last').serialize()
+      })
+      .done(function(text){console.log(text);alert('k')})
+      .fail(function() {})
+      .always(function() {});  
+      
+      return false;
+    });
+
+  div#new_path(style='display:none').panel.panel-default
+    div.panel-body
+      pre.bg-danger
+        Each line for each routes
+        br
+        Put the follow infos between comma(,):
+        br
+        <b>local, begin_point, end_point, distance</b>
+      form(accept-charset="UTF-8" action="/paths/create_massive" method="get")
+        textarea(cols="130" id="massive_paths" name="massive_paths" rows="15")
+        br
+        input(name="commit" type="submit" value="Create massive Path")
+  .panel.panel-default(style="height:250px; overflow:auto;border: solid 1px;")
+    .panel-body
+      legend Population
+      table.table
+        thead
+          tr
+            each val in ["Local", 'Begin point', "End point", "Distance (Km)", ""]
+              th= val
+        tbody
+          each path in []
+            tr
+              td= path.local
+              td= path.begin_point
+              td= path.end_point
+              td= path.distance
+              td
+                a.btn.btn-danger.btn-xs(data-confirm="Are you sure?" data-method="delete" href="/paths/#{path.id}" rel="nofollow" type="button") Destroy
+
+  .panel.panel-default(style="height:350px; overflow:auto;border: solid 1px;")
+    .panel-body
+      legend Operation
+      form
+        input#map_id(name="map_id" placeholder="Local" required="required" type="text" value="Sampa")
+        input#begin_point(name="begin_point" placeholder="Begin point" required="required" type="text" value="A")
+        input#end_point(name="end_point" placeholder="End point" required="required" type="text" value="D")
+        input#autonomy(name="autonomy" placeholder="Autonomy (Km/L)" required="required" type="text" value="10")
+        input#price(name="price" placeholder="Price (R$/L) (ex: 2.5)" required="required" type="text" value="2.5")
+        button.btn.btn-primary(type="submit") My route
+      div.alert.alert-success(role="alert" style='margin:15px')
+        p#top_result ...
+        h6 Cost(R$), distance(Km)
+      legend Benchmark
+      pre#benchmark
