@@ -1,8 +1,12 @@
 # Malha-Logistica
-
 Serviço que provê a melhor e mais barata rota para a sua logística.
 
-[https://malha-logistica.herokuapp.com](https://malha-logistica.herokuapp.com)
+Teste de performance RubyOnRails vc NodeJS
+
+[https://gist.github.com/altherlex/60d880db939b9b0e6d85](https://gist.github.com/altherlex/60d880db939b9b0e6d85)
+
+
+[https://nodejsapp-malha-logistica.herokuapp.com](https://nodejsapp-malha-logistica.herokuapp.com)
 
 ## Como usar webservice para calculo:
 Ordem de parametros: 
@@ -11,22 +15,22 @@ Ordem de parametros:
 ```
 
 ```
-$ curl -XGET "https://malha-logistica.herokuapp.com/figure/Sampa/A/D/10/2.json"
+$ curl -XGET "https://nodejsapp-malha-logistica.herokuapp.com/figure/Sampa/A/D/10/2.json"
 
 {"points":["A","B","D"],"cost":5.0,"distance":25.0}
 
 ou 
 
-$ curl -XGET "https://malha-logistica.herokuapp.com/figure?map_id=Sampa&begin_p
+$ curl -XGET "https://nodejsapp-malha-logistica.herokuapp.com/figure?map_id=Sampa&begin_p
 oint=A&end_point=D&autonomy=10&price=2.5&format=json"
 
 {"points":["A","B","D"],"cost":6.25,"distance":25.0}
 ```
 
-## Executando testes de unidade
+## Executando testes de unidade (jasmine-npm)
 
 ```
-rspec
+jasmine
 ```
 
 ## Análise
