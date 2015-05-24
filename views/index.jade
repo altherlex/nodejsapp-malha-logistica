@@ -28,14 +28,13 @@ block content
 
   div#new_path(style='display:none').panel.panel-default
     div.panel-body
-      pre.bg-danger
+      pre.bg-danger.
         Each line for each routes
-        br
         Put the follow infos between comma(,):
-        br
-        <b>local, begin_point, end_point, distance</b>
+          <b>local, begin_point, end_point, distance</b>
       form(accept-charset="UTF-8" action="/paths/create_massive" method="get")
-        textarea(cols="130" id="massive_paths" name="massive_paths" rows="15")
+        textarea(cols="130" id="massive_paths" name="massive_paths" rows="15").
+          #{info_pattern}
         br
         input(name="commit" type="submit" value="Create massive Path")
   .panel.panel-default(style="height:250px; overflow:auto;border: solid 1px;")
